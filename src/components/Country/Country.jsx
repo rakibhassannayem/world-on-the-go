@@ -6,18 +6,19 @@ const Country = ({ country, handleVisitedCountries }) => {
 
   const handleVisited = () => {
     // basic
-    // if(visited){
-    //   setVisited(false)
-    // }else{
-    //   setVisited(true)
-    // }
+    if(visited){
+      setVisited(false)
+      handleVisitedCountries(country, false)
+    }else{
+      setVisited(true)
+      handleVisitedCountries(country, true)
+    }
 
     // ternary
     // setVisited(visited ? false : true);
-    console.log(country)
 
-    setVisited(!visited)
-    handleVisitedCountries(country)
+    // setVisited(!visited)
+    
   };
 
   return (

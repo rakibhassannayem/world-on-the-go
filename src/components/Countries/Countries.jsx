@@ -5,19 +5,23 @@ import "./countries.css";
 const Countries = ({ countriesPromise }) => {
   const [visitedCountries, setVisitedCountries] = useState([]);
 
-  const handleVisitedCountries = (country) => {
-    const newVisitedCountries = [...visitedCountries, country]
-    setVisitedCountries(newVisitedCountries)
-    console.log(visitedCountries) //why its showing empty in the first log
-    console.log(newVisitedCountries)
+  const handleVisitedCountries = (country, isVisited) => {
+    const newVisitedCountries = [...visitedCountries, country];
+    if(isVisited){
+      setVisitedCountries(newVisitedCountries);
+    }
   };
-
   const countriesData = use(countriesPromise);
   const countries = countriesData.countries;
   return (
     <div>
       <h1>Total Countries: {countries.length}</h1>
       <h3>Country visited: {visitedCountries.length}</h3>
+      <div className="flags-container">
+        {visitedCountries.map((country, index) => {
+          return <img key={index} src={country?.flags.flags.png}></img>;
+        })}
+      </div>
       <div className="countries">
         {countries.map((country) => (
           <Country
